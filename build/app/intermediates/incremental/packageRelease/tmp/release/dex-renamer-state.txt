@@ -1,0 +1,4 @@
+#Thu Jul 21 04:44:49 WAT 2022
+base.0=/Users/macos/IdeaProjects/qpdl/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

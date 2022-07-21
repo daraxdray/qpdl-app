@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/macos/.gradle/caches/transforms-2/files-2.1/e596bd84a87a4cbdcf9d545f7eacbd1e/core-1.7.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/macos/.gradle/caches/transforms-2/files-2.1/e596bd84a87a4cbdcf9d545f7eacbd1e/core-1.7.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/Users/macos/.gradle/caches/transforms-2/files-2.1/e596bd84a87a4cbdcf9d545f7eacbd1e/core-1.7.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/macos/.gradle/caches/transforms-2/files-2.1/e596bd84a87a4cbdcf9d545f7eacbd1e/core-1.7.0/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

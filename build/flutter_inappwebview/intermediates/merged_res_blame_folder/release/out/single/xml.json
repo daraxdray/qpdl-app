@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/res/merged/release/xml/image_share_filepaths.xml",
+        "source": "/Users/macos/.gradle/caches/transforms-2/files-2.1/d213ef7ce0760aa31b0a7b18e07ce968/browser-1.4.0/res/xml/image_share_filepaths.xml"
+    },
+    {
+        "merged": "/Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/res/merged/release/xml/provider_paths.xml",
+        "source": "/Users/macos/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.4.3+7/android/src/main/res/xml/provider_paths.xml"
+    }
+]

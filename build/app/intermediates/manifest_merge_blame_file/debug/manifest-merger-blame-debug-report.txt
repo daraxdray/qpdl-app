@@ -1,0 +1,233 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.qpdl.qpdl"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:3:5-66
+14-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:3:22-64
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:5:5-65
+15-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:5:22-62
+16    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+16-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:6:5-71
+16-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:6:22-68
+17    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+17-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:7:5-80
+17-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:7:22-77
+18    <uses-permission android:name="android.permission.VIDEO_CAPTURE" />
+18-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:8:5-72
+18-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:8:22-69
+19    <uses-permission android:name="android.permission.AUDIO_CAPTURE" />
+19-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:9:5-72
+19-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:9:22-69
+20
+21    <queries>
+21-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-11:15
+22        <intent>
+22-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-10:18
+23            <action android:name="android.support.customtabs.action.CustomTabsService" />
+23-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-90
+23-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:9:21-87
+24        </intent>
+25    </queries>
+26
+27    <application
+27-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:10:4-56:19
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.7.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/e596bd84a87a4cbdcf9d545f7eacbd1e/core-1.7.0/AndroidManifest.xml:24:18-86
+29        android:debuggable="true"
+30        android:icon="@mipmap/ic_launcher"
+30-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:12:9-43
+31        android:label="qpdl" >
+31-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:11:9-29
+32        <provider
+33            android:name="com.pichillilorenzo.flutter_inappwebview.InAppWebViewFileProvider"
+34            android:authorities="io.qpdl.qpdl.flutter_inappwebview.fileprovider"
+35            android:exported="false"
+36            android:grantUriPermissions="true" >
+37            <meta-data
+38                android:name="android.support.FILE_PROVIDER_PATHS"
+39                android:resource="@xml/provider_paths" />
+40        </provider>
+41
+42        <activity
+42-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:22:9-50:20
+43            android:name="io.qpdl.qpdl.MainActivity"
+43-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:23:13-41
+44            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+44-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:26:13-163
+45            android:hardwareAccelerated="true"
+45-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:27:13-47
+46            android:launchMode="singleTop"
+46-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:24:13-43
+47            android:theme="@style/LaunchTheme"
+47-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:25:13-47
+48            android:windowSoftInputMode="adjustResize" >
+48-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:28:13-55
+49
+50            <!--
+51                 Specifies an Android theme to apply to this Activity as soon as
+52                 the Android process has started. This theme is visible to the user
+53                 while the Flutter UI initializes. After that, this theme continues
+54                 to determine the Window background behind the Flutter UI.
+55            -->
+56            <meta-data
+56-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:33:13-36:17
+57                android:name="io.flutter.embedding.android.NormalTheme"
+57-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:34:15-70
+58                android:resource="@style/NormalTheme" />
+58-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:35:15-52
+59            <!--
+60                 Displays an Android View that continues showing the launch screen
+61                 Drawable until Flutter paints its first frame, then this splash
+62                 screen fades out. A splash screen is useful to avoid any visual
+63                 gap between the end of Android's launch screen and the painting of
+64                 Flutter's first frame.
+65            -->
+66            <meta-data
+66-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:42:13-45:17
+67                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+67-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:43:15-79
+68                android:resource="@drawable/launch_background" />
+68-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:44:15-61
+69
+70            <intent-filter>
+70-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:46:13-49:29
+71                <action android:name="android.intent.action.MAIN" />
+71-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:47:17-68
+71-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:47:25-66
+72
+73                <category android:name="android.intent.category.LAUNCHER" />
+73-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:48:17-76
+73-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:48:27-74
+74            </intent-filter>
+75        </activity>
+76        <!--
+77             Don't delete the meta-data below.
+78             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+79        -->
+80        <meta-data
+80-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:53:9-55:33
+81            android:name="flutterEmbedding"
+81-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:54:13-44
+82            android:value="2" />
+82-->/Users/macos/IdeaProjects/qpdl/android/app/src/main/AndroidManifest.xml:55:13-30
+83
+84        <activity
+84-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:14:9-18:47
+85            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
+85-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-104
+86            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+86-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-137
+87            android:exported="true"
+87-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-36
+88            android:theme="@style/AppTheme" />
+88-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-44
+89        <activity
+89-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-22:55
+90            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
+90-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-112
+91            android:exported="true"
+91-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-36
+92            android:theme="@style/ThemeTransparent" />
+92-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-52
+93        <activity
+93-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-26:55
+94            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity"
+94-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-106
+95            android:exported="true"
+95-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-36
+96            android:theme="@style/ThemeTransparent" />
+96-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-52
+97        <activity
+97-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-31:55
+98            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+98-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-126
+99            android:exported="true"
+99-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-36
+100            android:launchMode="singleInstance"
+100-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:30:13-48
+101            android:theme="@style/ThemeTransparent" />
+101-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-52
+102        <activity
+102-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:32:9-36:55
+103            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+103-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-120
+104            android:exported="true"
+104-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-36
+105            android:launchMode="singleInstance"
+105-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-48
+106            android:theme="@style/ThemeTransparent" />
+106-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-52
+107
+108        <receiver
+108-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:38:9-41:40
+109            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver"
+109-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-111
+110            android:enabled="true"
+110-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-35
+111            android:exported="false" />
+111-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-37
+112
+113        <meta-data
+113-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:43:9-45:36
+114            android:name="io.flutter.embedded_views_preview"
+114-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:44:13-61
+115            android:value="true" />
+115-->[:flutter_inappwebview] /Users/macos/IdeaProjects/qpdl/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:45:13-33
+116
+117        <activity
+117-->[:url_launcher_android] /Users/macos/IdeaProjects/qpdl/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+118            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+118-->[:url_launcher_android] /Users/macos/IdeaProjects/qpdl/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+119            android:exported="false"
+119-->[:url_launcher_android] /Users/macos/IdeaProjects/qpdl/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+120            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+120-->[:url_launcher_android] /Users/macos/IdeaProjects/qpdl/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+121
+122        <uses-library
+122-->[androidx.window:window:1.0.0-beta04] /Users/macos/.gradle/caches/transforms-2/files-2.1/e4e324fde2799cc82a9b6d2e3e16efc2/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+123            android:name="androidx.window.extensions"
+123-->[androidx.window:window:1.0.0-beta04] /Users/macos/.gradle/caches/transforms-2/files-2.1/e4e324fde2799cc82a9b6d2e3e16efc2/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+124            android:required="false" />
+124-->[androidx.window:window:1.0.0-beta04] /Users/macos/.gradle/caches/transforms-2/files-2.1/e4e324fde2799cc82a9b6d2e3e16efc2/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+125        <uses-library
+125-->[androidx.window:window:1.0.0-beta04] /Users/macos/.gradle/caches/transforms-2/files-2.1/e4e324fde2799cc82a9b6d2e3e16efc2/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+126            android:name="androidx.window.sidecar"
+126-->[androidx.window:window:1.0.0-beta04] /Users/macos/.gradle/caches/transforms-2/files-2.1/e4e324fde2799cc82a9b6d2e3e16efc2/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+127            android:required="false" />
+127-->[androidx.window:window:1.0.0-beta04] /Users/macos/.gradle/caches/transforms-2/files-2.1/e4e324fde2799cc82a9b6d2e3e16efc2/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+128
+129        <provider
+129-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+130            android:name="androidx.startup.InitializationProvider"
+130-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+131            android:authorities="io.qpdl.qpdl.androidx-startup"
+131-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+132            android:exported="false" >
+132-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+133            <meta-data
+133-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+134                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+134-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+135                android:value="androidx.startup" />
+135-->[androidx.emoji2:emoji2:1.0.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/6d54bbfebc644b955342f5222212631f/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+136            <meta-data
+136-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/b4f70e2aa5cce10e50e20d9b8e994481/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+137                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+137-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/b4f70e2aa5cce10e50e20d9b8e994481/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+138                android:value="androidx.startup" />
+138-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/macos/.gradle/caches/transforms-2/files-2.1/b4f70e2aa5cce10e50e20d9b8e994481/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+139        </provider>
+140    </application>
+141
+142</manifest>

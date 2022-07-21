@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+io/qpdl/qpdl/BuildConfig.java
+ io.qpdl.qpdl.BuildConfig
+io/diagon/diagon/MainActivity.java
+ io.qpdl.qpdl.MainActivity
