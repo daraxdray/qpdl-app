@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 // 74A236
 final Map<String, dynamic> basket = {
-  'PrimaryColor': const Color.fromARGB(205, 220,38,38),
-  'PrimaryColor2': const Color.fromARGB(255, 139, 0, 0),
+  'PrimaryColor': const Color.fromARGB(255, 213, 91, 14),
+  'PrimaryColor2': const Color.fromARGB(255, 139, 100, 0),
   'WhiteColor': const Color.fromARGB(255, 255, 255, 255),
   'GreyColor': const Color.fromARGB(205, 91, 94, 88),
-  'SecColor': const Color.fromARGB(205, 245, 64, 64),
-  'SecColor2': const Color.fromARGB(255, 162, 54, 54),
+  'SecColor': const Color.fromARGB(205, 35, 35, 35),
+  'SecColor2': const Color.fromARGB(255, 2, 1, 1),
   'primaryHex': 0xff8DC63F,
   'colorSwatches': const <int, Color>{
                                     10 : Color(0xFFC63F3F),

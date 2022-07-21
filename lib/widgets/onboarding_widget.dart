@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Diagon/models/onboard_model.dart';
-import 'package:Diagon/utility/basket.dart';
+import 'package:qpdl/models/onboard_model.dart';
+import 'package:qpdl/utility/basket.dart';
 
 class OnBoardingLayout extends StatelessWidget {
   final OnBoardModel?  data;
@@ -12,8 +12,10 @@ class OnBoardingLayout extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
+        Container(
+          color: Colors.white,
           height: 260,
+          width: MediaQuery.of(context).size.width ,
           child: Image.asset(data?.imagePath ?? 'assets/step1.png'),
         ),
         const SizedBox(height: 30,width: 20,),

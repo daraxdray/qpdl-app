@@ -1,7 +1,7 @@
-import 'package:Diagon/models/slide_model.dart';
+import 'package:qpdl/models/slide_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Diagon/utility/basket.dart';
+import 'package:qpdl/utility/basket.dart';
 
 class SlidingLayout extends StatelessWidget {
   final SlideModel?  data;

@@ -1,4 +1,4 @@
-name: Diagon
+name: qpdl
 description: Casually PlayToEarn - A Platform that gives you the best digital living experience with crypto.
 
 # The following line prevents the package from being accidentally published to
@@ -32,8 +32,10 @@ dependencies:
   shared_preferences: ^2.0.8
   flutter_inappwebview:
   url_launcher: ^6.0.0-nullsafety.4
-
-
+  fluttertoast: ^8.0.8
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  permission_handler: ^9.2.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

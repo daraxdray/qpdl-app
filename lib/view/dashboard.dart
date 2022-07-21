@@ -1,87 +1,178 @@
-import 'package:Diagon/models/slide_model.dart';
-import 'package:Diagon/utility/onboarding_data.dart';
-import 'package:Diagon/view/start_page.dart';
-import 'package:Diagon/widgets/custom_button.dart';
-import 'package:Diagon/widgets/round_button.dart';
-import 'package:Diagon/widgets/sliding_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:Diagon/models/first_time.dart';
-import 'package:Diagon/utility/basket.dart';
-import 'package:Diagon/widgets/tr_appbar.dart';
+import 'dart:async';
 
-import 'Diagon_webview.dart';
+import 'package:qpdl/bloc/menu_bloc.dart';
+import 'package:qpdl/models/slide_model.dart';
+import 'package:qpdl/utility/onboarding_data.dart';
+import 'package:qpdl/view/about_us.dart';
+import 'package:qpdl/view/start_page.dart';
+import 'package:qpdl/widgets/custom_button.dart';
+import 'package:qpdl/widgets/round_button.dart';
+import 'package:qpdl/widgets/sliding_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:qpdl/models/first_time.dart';
+import 'package:qpdl/utility/basket.dart';
+import 'package:qpdl/widgets/tr_appbar.dart';
+
+import 'qpdl_webview.dart';
 
 class Dashboard extends StatelessWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  MenuBloc? bloc;
+  Dashboard({Key? key,  this.bloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: TrNavDrawer(),
+      endDrawer: TrNavDrawer(bloc: bloc ?? MenuBloc(),),
       drawerEnableOpenDragGesture: false,
-      appBar: trAppBar(
-
-      ),
+      appBar: trAppBar(title: Text("Home"),leadingWidth: 50,child:SizedBox()),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         scrollDirection: Axis.vertical,
-        child:  Container(
-          // height: MediaQuery.of(context).size.width,
-          child: Stack(
-              children: [
-                const SlidingScreen(),
-                Container(
-                  color: Colors.black,
-                  child: Image.asset('assets/collage.png'),
-                ),
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                        // gradient: LinearGradient(begin: Alignment.bottomRight,  colors: [Colors.black, Colors.black,Colors.black54], end: Alignment.topCenter)
-                      color: Color.fromARGB(230, 0, 0, 0)
+        child:  Column(
+          children: [
+            SizedBox(
+                height: 600,
+                child:  CustomScrollView(
+                  primary: false,
+                  shrinkWrap: true,
+                  slivers: <Widget>[
+                    SliverPadding(
+                      padding: const EdgeInsets.all(25),
+                      sliver: SliverGrid.count(
+                        crossAxisSpacing: 40,
+                        mainAxisSpacing: 40,
+                        crossAxisCount: 2,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context)=> QpdlWebPage(url: "https://qpdlogistics.com/login.php?driver_app=true",appBar: true,bloc: bloc,))),
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      SizedBox(
+                                          height: 60,
+                                          child:  Icon(Icons.home_outlined,color: basket['PrimaryColor'],size: 40,),
+                                      ),
+                                      SizedBox(
+                                          child:
+                                          Text("Dashboard", style: TextStyle(color:Colors.black87,fontSize: 16,fontWeight: FontWeight.bold,),))
+                                    ]
+                                ),
+                                decoration: BoxDecoration(
+                                  color:  Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [BoxShadow(color: Colors.black26,offset: Offset(-2, 4),blurRadius: 2)],
+                                )
+                            ),
+                          ),
+                          InkWell(
+                            onTap: ()=> goTo(context, QpdlWebPage(url:'https://qpdlogistics.com/tracking.php?driver_app=true',appBar: true,)),
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      SizedBox(
+                                          height: 60,
+                                          child:  Icon(Icons.gamepad,color: basket['PrimaryColor'],size: 40,),
+                                      ),
+                                      SizedBox(
+                                          child:
+                                          Text("Tracking", style: TextStyle(color:Colors.black87,fontSize: 16,fontWeight: FontWeight.bold,),))
+                                    ]
+                                ),
+                                decoration: BoxDecoration(
+                                  color:  Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [BoxShadow(color: Colors.black26,offset: Offset(-2, 4),blurRadius: 2)],
+                                )
+                            ),
+                          ),
+                          InkWell(
+                            onTap: ()=> goTo(context, QpdlWebPage(url:'https://qpdlogistics.com/pickup_list.php?driver_app=true',appBar: false,)),
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      SizedBox(
+                                          height: 60,
+                                          child:  Icon(Icons.shopping_cart,color: basket['PrimaryColor'],size: 40,),
+                                      ),
+                                      SizedBox(
+                                          child:
+                                          Text("Pickup List", style: TextStyle(color:Colors.black87,fontSize: 16,fontWeight: FontWeight.bold,),))
+                                    ]
+                                ),
+                                decoration: BoxDecoration(
+                                  color:  Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [BoxShadow(color: Colors.black26,offset: Offset(-2, 4),blurRadius: 2)],
+                                )
+                            ),
+                          ),
+                          InkWell(
+                            onTap: ()=> goTo(context, QpdlWebPage(url:'https://qpdlogistics.com/reports.php?driver_app=true',appBar: false,)),
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      SizedBox(
+                                          height: 60,
+                                          child:  Icon(Icons.report,color: basket['PrimaryColor'],size: 40,),
+                                      ),
+                                      SizedBox(
+                                          child:
+                                          Text("General Reports", style: TextStyle(color:Colors.black87,fontSize: 16,fontWeight: FontWeight.bold,),))
+                                    ]
+                                ),
+                                decoration: BoxDecoration(
+                                  color:  Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [BoxShadow(color: Colors.black26,offset: Offset(-2, 4),blurRadius: 2)],
+                                )
+                            ),
+                          ),
+                          InkWell(
+                            onTap: ()=> goTo(context, AboutPage(bloc: bloc,)),
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      SizedBox(
+                                          height: 60,
+                                          child:  Icon(Icons.link,color: basket['PrimaryColor'],size: 40,),
+                                      ),
+                                      SizedBox(
+                                          child:
+                                          Text("About Us", style: TextStyle(color:Colors.black87,fontSize: 16,fontWeight: FontWeight.bold,),))
+                                    ]
+                                ),
+                                decoration: BoxDecoration(
+                                  color:  Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: const [BoxShadow(color: Colors.black26,offset: Offset(-2, 4),blurRadius: 2)],
+                                )
+                            ),
+                          ),
+
+
+
+                        ],
+                      ),
                     ),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SlidingScreen(),
-                          const SizedBox(height: 10,width: 20,),
-                          SizedBox(
-                              child:  CustomScrollView(
-                                primary: false,
-                                shrinkWrap: true,
-                                slivers: <Widget>[
-                                  SliverPadding(
-                                    padding: const EdgeInsets.all(25),
-                                    sliver: SliverGrid.count(
-                                      crossAxisSpacing: 40,
-                                      mainAxisSpacing: 40,
-                                      crossAxisCount: 2,
-                                      children: <Widget>[
-                                        for(int i = 0; i < gameList.length - 1; i++ )
-                                        InkWell(
-                                          onTap: ()=>{
-                                            goTo(context, DiagonWebPage(url: gameList[i]['url'] ?? "https://Diagon.io/perfect-piano",))
-                                          },
-                                            child: Container(
-                                                padding: const EdgeInsets.all(0),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(20),
-                                                  image:  DecorationImage(image: AssetImage("${gameList[i]['imagePath']}")),
-                                                ))
-                                        ),
-
-
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                          )
-
-                        ]
-                    )
+                  ],
                 )
-              ])
+            )
+          ],
         )
 
       ),
@@ -89,13 +180,13 @@ class Dashboard extends StatelessWidget {
   }
 }
 
-class Company {
-}
-
 
 
 class SlidingScreen extends StatefulWidget {
-  const SlidingScreen({Key? key}) : super(key: key);
+  final bool autorotate;
+
+
+   const SlidingScreen({Key? key, this.autorotate= true} ) : super(key: key);
 
   @override
   _SlidingScreenState createState() => _SlidingScreenState();
@@ -106,12 +197,35 @@ class _SlidingScreenState extends State<SlidingScreen> {
   final List<SlideModel> _slideModel = SlideModel.getModels();
   int currentModel = 0;
   final pvController = PageController();
+  Timer? _timer;
+  void autoRotate(){
+    const interval = Duration(seconds: 2);
+    if(widget.autorotate){
+      _timer = Timer.periodic(
+         interval,
+        (Timer timer){
+           if(currentModel < _slideModel.length - 1) {
+             goToNextPage();
+           } else{
+             goToFirstPage();
+           }
+          }
+      );
+    }
+  }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _timer!.cancel();
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // _slideModel =
+    autoRotate();
   }
 
   goToNextPage(){
@@ -132,7 +246,6 @@ class _SlidingScreenState extends State<SlidingScreen> {
     });
     animateToPage();
   }
-
   goToLastPage(){
     setState(() {
       currentModel = _slideModel.length - 1;
@@ -140,9 +253,15 @@ class _SlidingScreenState extends State<SlidingScreen> {
     });
     animateToPage();
   }
+  goToFirstPage(){
+    setState(() {
+      currentModel = 0;
+    });
+    animateToPage();
+  }
 
   gotoStartPage(){
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const StartPage()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => StartPage()));
   }
   animateToPage(){
     if (pvController.hasClients) {
@@ -179,8 +298,8 @@ class _SlidingScreenState extends State<SlidingScreen> {
                         ]),
                     TcRecButton(child:const Text("Play Game", style: TextStyle(fontFamily: 'BRFirmaBlack')),action: gotoStartPage,  )
 
-                  ]
-              );
+                          ],
+                        );
 
   }
 }

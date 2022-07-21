@@ -1,4 +1,4 @@
-package io.Diagon.Diagon;
+package io.qpdl.qpdl;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -1,10 +1,19 @@
-import 'package:Diagon/view/dashboard.dart';
-import 'package:Diagon/view/start_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qpdl/view/dashboard.dart';
+import 'package:qpdl/view/onboarding.dart';
+import 'package:qpdl/view/qpdl_webview.dart';
+import 'package:qpdl/view/start_page.dart';
 import 'package:flutter/material.dart';
-import 'package:Diagon/models/first_time.dart';
-import 'package:Diagon/utility/basket.dart';
+import 'package:qpdl/models/first_time.dart';
+import 'package:qpdl/utility/basket.dart';
 
-void main() {
+import 'bloc/menu_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Permission.camera.request();
+  await Permission.microphone.request();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 
@@ -17,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Diagon',
+        title: 'QPDL',
         theme: ThemeData(
           primaryColor: MaterialColor(basket['primaryHex'], basket['colorSwatches']),
           primaryColorBrightness: Brightness.light,
@@ -46,16 +55,15 @@ class MyApp extends StatelessWidget {
           ),
 
         ),
-        home:
-      FutureBuilder(
+        home:FutureBuilder(
         future: FirstTime.is_first_launch(),
         builder: (BuildContext context, AsyncSnapshot<bool?> snapshot) {
 
           if(snapshot.hasData && snapshot.data == false){
-            return Dashboard();
+            return StartPage();
           }
           else if(snapshot.hasData && snapshot.data == true){
-            return const StartPage();
+            return const OnBoardingScreen();
 
           }
 

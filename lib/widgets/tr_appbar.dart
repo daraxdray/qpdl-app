@@ -1,23 +1,33 @@
-import 'package:Diagon/main.dart';
-import 'package:Diagon/view/dashboard.dart';
-import 'package:Diagon/view/Diagon_webview.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qpdl/bloc/menu_bloc.dart';
+import 'package:qpdl/bloc/menu_event.dart';
+import 'package:qpdl/bloc/menu_state.dart';
+import 'package:qpdl/main.dart';
+import 'package:qpdl/view/about_us.dart';
+import 'package:qpdl/view/dashboard.dart';
+import 'package:qpdl/view/qpdl_webview.dart';
 import 'package:flutter/material.dart';
-import 'package:Diagon/models/first_time.dart';
-import 'package:Diagon/utility/basket.dart';
+import 'package:qpdl/models/first_time.dart';
+import 'package:qpdl/utility/basket.dart';
+import 'package:qpdl/view/start_page.dart';
 
-import 'package:Diagon/widgets/custom_button.dart';
+import 'package:qpdl/widgets/custom_button.dart';
 
-PreferredSizeWidget trAppBar(){
+PreferredSizeWidget trAppBar({Widget? child, Widget? title, context, bool? centerTitle, double? leadingWidth}){
   return AppBar(
-    leading: Container(
-      padding: const EdgeInsets.only(left:15, top: 20),
-      child: Text("Gameboard", style: TextStyle(color: Colors.white,fontFamily: 'BRFirmaBlack',fontSize: 16),),
-    ),
-      leadingWidth: 150,
-      iconTheme:  IconThemeData(
-        color: basket['WhiteColor'], //change your color here
+      leading: Container(
+        padding: const EdgeInsets.all(3),
+        margin: const EdgeInsets.only(bottom: 10),
+        child: child ?? TcCircularButton(action: ()=> Navigator.pop(context)),
+        // Text(title ?? "Williams,", style: basket['AppBarTitle'],),
       ),
-    backgroundColor: const Color.fromARGB(221, 125, 8, 8),
+      centerTitle: centerTitle,
+      title: title,
+      leadingWidth: leadingWidth ?? 150,
+      backgroundColor: Colors.black87,
+      iconTheme:  IconThemeData(
+        color: basket['primColor1'], //change your color here
+      )
   );
 }
 PreferredSizeWidget trPageAppBar(context){
@@ -34,7 +44,9 @@ PreferredSizeWidget trPageAppBar(context){
 
 
 class TrNavDrawer extends StatelessWidget {
-  const TrNavDrawer({Key? key}) : super(key: key);
+  final MenuBloc bloc;
+
+  const TrNavDrawer({Key? key, required this.bloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +56,7 @@ class TrNavDrawer extends StatelessWidget {
         child: Stack(
           children: [
 
-            TrNavList(),
+            TrNavList(bloc:bloc),
              Padding(
               padding: const EdgeInsets.only(left:420,top:140),
               child: Transform.rotate(
@@ -70,7 +82,8 @@ class TrNavDrawer extends StatelessWidget {
 
 
 class TrNavList extends StatefulWidget {
-  const TrNavList({Key? key}) : super(key: key);
+  MenuBloc bloc;
+   TrNavList( {Key? key, required this.bloc}) : super(key: key);
 
   @override
   _TrNavListState createState() => _TrNavListState();
@@ -89,286 +102,240 @@ class _TrNavListState extends State<TrNavList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.only(left: 30),
-      children: <Widget>[
-        DrawerHeader(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+    return BlocBuilder(
+      bloc: widget.bloc,
+        builder: (context, state){
+      return ListView(
+          padding: const EdgeInsets.only(left: 30),
+          children: <Widget>[
+            DrawerHeader(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: Image.asset('assets/favicon.png'),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: Image.asset('assets/favicon.png'),
+                        ),
+                        Text("QPDL DRIVERS", style: basket['LgTitle'],)
+                      ],
                     ),
-                    Text("Diagon", style: basket['LgTitle'],)
+                    IconButton(icon:Icon(Icons.highlight_remove),color: basket['PrimaryColor'],iconSize: 30, onPressed: () {
+                      goBack(context);
+                    },)
                   ],
+                )
+            ),
+             ListTile(
+              leading: MenuBloc.activeUrl == 0? Container(
+                width: 50,
+                height: 50,
+                child: Icon(Icons.home_outlined,color: basket['WhiteColor'],),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color.fromARGB(255, 213, 91, 14),
                 ),
-                IconButton(icon:Icon(Icons.highlight_remove),color: basket['PrimaryColor'],iconSize: 30, onPressed: () {
-                  goBack(context);
-                },)
-              ],
-            )
-        ),
-        ListTile(
-          leading: activePage == 0? Container(
-            width: 50,
-            height: 50,
-            child: Icon(Icons.home_outlined,color: basket['WhiteColor'],),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 162, 54, 54),
+              ) :
+              Container(
+                child: Icon(Icons.home,color: basket['PrimaryColor'],),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color.fromARGB(100, 245, 245, 245),
+                ),
+              ),
+              title: Text('Home'),
+              onTap: () => {
+                setState((){
+                  MenuBloc.activeUrl = 0;
+                  goTo(context,Dashboard(bloc: widget.bloc,));
+                })
+              },
             ),
-          ) :
-        Container(
-            child: Icon(Icons.delete_outline_rounded,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
-            ),
-          ),
-          title: Text('Home'),
-          onTap: () => {
-             setState((){
-              activePage = 0;
-              goTo(context,Dashboard());
-             })
-          },
-        ),
-        ListTile(
-          leading: activePage == 1? Container(
-            width: 50,
-            height: 50,
-            child: Icon(Icons.delete_outline_rounded,color: basket['WhiteColor'],),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 162, 54, 54),
-            ),
-          ) : Container(
-            child: Icon(Icons.dashboard,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
-            ),
-          ) ,
+            if(state == LoggedIn) ListTile(
+              leading: MenuBloc.activeUrl  == 1? Container(
+                width: 50,
+                height: 50,
+                child: Icon(Icons.dashboard,color: basket['WhiteColor'],),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color.fromARGB(255, 213, 91, 14),
+                ),
+              ) : Container(
+                child: Icon(Icons.dashboard,color: basket['PrimaryColor'],),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color.fromARGB(100, 245, 245, 245),
+                ),
+              ) ,
 
-          title: Text('Dashboard'),
-          onTap: (){
-            setState((){
-              activePage = 1;
-              goTo(context,DiagonWebPage(url:'https://Diagon.io/dashboard'));
-            });
+              title: const Text('Dashboard'),
+              onTap: (){
+                setState((){
+                  MenuBloc.activeUrl  = 1;
+                  goTo(context,QpdlWebPage(url: "https://qpdlogistics.com/login.php?driver_app=true",appBar: true,));
+                });
 
-          },
-        ),
-        ListTile(
-          leading: activePage == 2? Container(
-            width: 50,
-            height: 50,
-            child: Icon(Icons.calculate_outlined,color: basket['WhiteColor'],),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 162, 54, 54),
+              },
             ),
-          ) : Container(
-            child: Icon(Icons.calculate_outlined,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
-            ),
-          ),
-          title: Text('Transactions'),
-          onTap: () => {
-            setState((){
-              activePage = 2;
-              goTo(context, DiagonWebPage(url:'https://Diagon.io/transactions'));
-            })
-          },
-        ),
-        ListTile(
-          leading:activePage == 3? Container(
-            width: 50,
-            height: 50,
-            child: Icon(Icons.location_searching,color: basket['WhiteColor'],),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(255, 162, 54, 54),
-            ),
-          ) : Container(
-            child: Icon(Icons.link,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
-            ),
-          ),
+            // ListTile(
+            //   leading: activePage == 2? Container(
+            //     width: 50,
+            //     height: 50,
+            //     child: Icon(Icons.person_add_alt_1_outlined,color: basket['WhiteColor'],),
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(15),
+            //       color: Color.fromARGB(255, 213, 91, 14),
+            //     ),
+            //   ) : Container(
+            //     child: Icon(Icons.person_add,color: basket['PrimaryColor'],),
+            //     width: 50,
+            //     height: 50,
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(15),
+            //       color: Color.fromARGB(100, 245, 245, 245),
+            //     ),
+            //   ),
+            //   title: Text('Register'),
+            //   onTap: () => {
+            //     setState((){
+            //       activePage = 2;
+            //       goTo(context, QpdlWebPage(url: "https://qpdlogistics.com/drivers_register.php?driver_app=true",appBar: true,));
+            //     })
+            //   },
+            // ),
+            ListTile(
+                leading: MenuBloc.activeUrl == 3? Container(
+                  width: 50,
+                  height: 50,
+                  child: Icon(Icons.location_searching,color: basket['WhiteColor'],),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: const Color.fromARGB(255, 213, 91, 14),
+                  ),
+                ) : Container(
+                  child: Icon(Icons.link,color: basket['PrimaryColor'],),
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromARGB(100, 245, 245, 245),
+                  ),
+                ),
 
-          title: Text('Invite Friends'),
-          onTap: () => {
-            setState((){
-            activePage = 3;
-            goTo(context, DiagonWebPage(url:'https://Diagon.io/affiliate'));
-          })}
-        ),
-        ListTile(
-          leading:  activePage == 4? Container(
-          width: 50,
-          height: 50,
-          child: Icon(Icons.qr_code_scanner,color: basket['WhiteColor'],),
-          decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Color.fromARGB(255, 162, 54, 54),
-          ),
-          ) : Container(
-            child: Icon(Icons.gamepad,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
+                title: Text('About Us'),
+                onTap: () => {
+                  setState((){
+                    widget.bloc.add(ActivateMenu(active: 3));
+                    goTo(context, AboutPage());
+                  })}
             ),
-          ),
-          title:  Text('Diagon Games'),
-          onTap: () {
-            activePage =4;
-            goTo(context, DiagonWebPage(url:'https://Diagon.io/games'));
-          }
-        ),
-        ListTile(
-          leading: activePage == 5? Container(
-            width: 50,
-            height: 50,
-            child: Icon(Icons.location_on_outlined,color: basket['WhiteColor'],),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 162, 54, 54),
+            ListTile(
+                leading:  MenuBloc.activeUrl == 4? Container(
+                  width: 50,
+                  height: 50,
+                  child: Icon(Icons.qr_code_scanner,color: basket['WhiteColor'],),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromARGB(255, 213, 91, 14),
+                  ),
+                ) : Container(
+                  child: Icon(Icons.gamepad,color: basket['PrimaryColor'],),
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromARGB(100, 245, 245, 245),
+                  ),
+                ),
+                title:  Text('Tracking'),
+                onTap: () {
+                  widget.bloc.add(ActivateMenu(active: 4));
+                  goTo(context, QpdlWebPage(url:'https://qpdlogistics.com/tracking.php?driver_app=true',appBar: true,));
+                }
             ),
-          ) : Container(
-            child: Icon(Icons.add_moderator,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
-            ),
-          ),
-          title:  Text('Diagon Utility'),
-          onTap: () => {
-            setState((){
-              activePage = 5;
-              goTo(context, DiagonWebPage(url:'https://Diagon.io/utility'));
-            })
-          },
-        ),
-        ListTile(
-          leading: activePage == 6? Container(
-            width: 50,
-            height: 50,
-            child: Icon(Icons.swap_vert_circle_outlined,color: basket['WhiteColor'],),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(255, 162, 54, 54),
-            ),
-          ) : Container(
-            child: Icon(Icons.swap_vert_circle_outlined ,color: basket['PrimaryColor'],),
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromARGB(100, 245, 245, 245),
-            ),
-          ),
-          title:  Text('Diagon NFT'),
-          onTap: () => {
-            setState((){
-            activePage = 6;
-            goTo(context, DiagonWebPage(url:'https://Diagon.io/nft'));
-          }) }
-        ),
-    //     ListTile(
-    //       leading: activePage == 7? Container(
-    // width: 50,
-    // height: 50,
-    // child: Icon(Icons.history,color: basket['WhiteColor'],),
-    // decoration: BoxDecoration(
-    // borderRadius: BorderRadius.circular(15),
-    // color: Color.fromARGB(255, 162, 54, 54),
-    // ),
-    // ) :  Container(
-    //         child: Icon(Icons.history ,color: basket['PrimaryColor'],),
-    //         width: 50,
-    //         height: 50,
-    //         decoration: BoxDecoration(
-    //           borderRadius: BorderRadius.circular(15),
-    //           color: Color.fromARGB(100, 245, 245, 245),
-    //         ),
-    //       ),
-    //       title:  Text('Transaction History'),
-    //       onTap: () => {
-    //         setState((){
-    //           activePage  = 7;
-    //         })
-    //       },
-    //     ),
-    //     ListTile(
-    //       leading:  activePage == 8? Container(
-    // width: 50,
-    // height: 50,
-    // child: Icon(Icons.settings,color: basket['WhiteColor'],),
-    // decoration: BoxDecoration(
-    // borderRadius: BorderRadius.circular(15),
-    // color: Color.fromARGB(255, 162, 54, 54),
-    // ),
-    // ) : Container(
-    //         child: Icon(Icons.settings ,color: basket['PrimaryColor'],),
-    //         width: 50,
-    //         height: 50,
-    //         decoration: BoxDecoration(
-    //           borderRadius: BorderRadius.circular(15),
-    //           color: Color.fromARGB(100, 245, 245, 245),
-    //         ),
-    //       ),
-    //       title:  Text('Settings'),
-    //       onTap: () => {
-    //         setState((){
-    //           activePage = 8;
-    //         })
-    //       },
-    //     ),
-    //     ListTile(
-    //       leading: activePage == 9? Container(
-    //         width: 50,
-    //         height: 50,
-    //         child: Icon(Icons.logout,color: basket['WhiteColor'],),
-    //         decoration: BoxDecoration(
-    //           borderRadius: BorderRadius.circular(15),
-    //           color: Color.fromARGB(255, 162, 54, 54),
-    //         ),
-    //       ) : Container(
-    //         child: Icon(Icons.logout ,color: basket['PrimaryColor'],),
-    //         width: 50,
-    //         height: 50,
-    //         decoration: BoxDecoration(
-    //           borderRadius: BorderRadius.circular(15),
-    //           color: Color.fromARGB(100, 245, 245, 245),
-    //         ),
-    //       ),
-    //       title:  Text('Logout'),
-    //       onTap: () => {
-    //         setState((){
-    //           activePage = 9;
-    //         })
-    //       },
-    // )
-    ]);
+
+            //     ListTile(
+            //       leading: activePage == 7? Container(
+            // width: 50,
+            // height: 50,
+            // child: Icon(Icons.history,color: basket['WhiteColor'],),
+            // decoration: BoxDecoration(
+            // borderRadius: BorderRadius.circular(15),
+            // color: Color.fromARGB(255, 213, 91, 14),
+            // ),
+            // ) :  Container(
+            //         child: Icon(Icons.history ,color: basket['PrimaryColor'],),
+            //         width: 50,
+            //         height: 50,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(15),
+            //           color: Color.fromARGB(100, 245, 245, 245),
+            //         ),
+            //       ),
+            //       title:  Text('Transaction History'),
+            //       onTap: () => {
+            //         setState((){
+            //           activePage  = 7;
+            //         })
+            //       },
+            //     ),
+            //     ListTile(
+            //       leading:  activePage == 8? Container(
+            // width: 50,
+            // height: 50,
+            // child: Icon(Icons.settings,color: basket['WhiteColor'],),
+            // decoration: BoxDecoration(
+            // borderRadius: BorderRadius.circular(15),
+            // color: Color.fromARGB(255, 213, 91, 14),
+            // ),
+            // ) : Container(
+            //         child: Icon(Icons.settings ,color: basket['PrimaryColor'],),
+            //         width: 50,
+            //         height: 50,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(15),
+            //           color: Color.fromARGB(100, 245, 245, 245),
+            //         ),
+            //       ),
+            //       title:  Text('Settings'),
+            //       onTap: () => {
+            //         setState((){
+            //           activePage = 8;
+            //         })
+            //       },
+            //     ),
+            //     ListTile(
+            //       leading: activePage == 9? Container(
+            //         width: 50,
+            //         height: 50,
+            //         child: Icon(Icons.logout,color: basket['WhiteColor'],),
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(15),
+            //           color: Color.fromARGB(255, 213, 91, 14),
+            //         ),
+            //       ) : Container(
+            //         child: Icon(Icons.logout ,color: basket['PrimaryColor'],),
+            //         width: 50,
+            //         height: 50,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(15),
+            //           color: Color.fromARGB(100, 245, 245, 245),
+            //         ),
+            //       ),
+            //       title:  Text('Logout'),
+            //       onTap: () => {
+            //         setState((){
+            //           activePage = 9;
+            //         })
+            //       },
+            // )
+          ]);
+    });
   }
 }

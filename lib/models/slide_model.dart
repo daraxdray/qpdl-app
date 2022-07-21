@@ -1,4 +1,4 @@
-import 'package:Diagon/utility/onboarding_data.dart';
+import 'package:qpdl/utility/onboarding_data.dart';
 
 class SlideModel {
   final String title;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:Diagon/models/onboard_model.dart';
-import 'package:Diagon/models/first_time.dart';
-import 'package:Diagon/utility/basket.dart';
-import 'package:Diagon/utility/onboarding_data.dart';
-import 'package:Diagon/view/start_page.dart';
-import 'package:Diagon/widgets/custom_button.dart';
-import 'package:Diagon/widgets/onboarding_widget.dart';
-import 'package:Diagon/widgets/round_button.dart';
+import 'package:qpdl/models/onboard_model.dart';
+import 'package:qpdl/models/first_time.dart';
+import 'package:qpdl/utility/basket.dart';
+import 'package:qpdl/utility/onboarding_data.dart';
+import 'package:qpdl/view/start_page.dart';
+import 'package:qpdl/widgets/custom_button.dart';
+import 'package:qpdl/widgets/onboarding_widget.dart';
+import 'package:qpdl/widgets/round_button.dart';
 import 'package:flutter/painting.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -57,7 +57,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   gotoStartPage(){
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const StartPage()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => StartPage()));
   }
   animateToPage(){
     if (pvController.hasClients) {
